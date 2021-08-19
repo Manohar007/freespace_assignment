@@ -39,7 +39,7 @@ class GetUserScreen extends StatelessWidget {
       ),
     ),
     title: Text(dataViewModel.name),
-    onTap: onTapUser(index),
+    onTap: (){onTapUser(index);},
     );
   }
 }

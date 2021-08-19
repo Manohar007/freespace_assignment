@@ -9,22 +9,34 @@ class GetUserBusinessModel extends BusinessModel
   void updateBusinessModel(GetUserResponseModel responseModel)
   {
     responseModel.userList.forEach((element) {
-      UsersDataBusinessModel usersDataBusinessModel=UsersDataBusinessModel(
-        userID: element.userID,
-        avatar: element.avatar,
-        name: element.name,
-        postList: List<UsersPostDataBusinessModel>.from(element.postList.map((e) => UsersPostDataBusinessModel(
-          title: e.title,
-          author: e.author,
-          body: e.body,
-          postID: e.postID
-        )))
-      );
+      UsersDataBusinessModel usersDataBusinessModel=_getUserData(element);
       listUsers.add(usersDataBusinessModel);
     });
 
   }
-  
+
+
+  void updateSingleUserPost(UsersDataResponseModel element)
+  {
+    listUsers.add(_getUserData(element));
+  }
+
+
+  UsersDataBusinessModel _getUserData(UsersDataResponseModel element)
+  {
+    return UsersDataBusinessModel(
+        userID: element.userID,
+        avatar: element.avatar,
+        name: element.name,
+        postList: List<UsersPostDataBusinessModel>.from(element.postList.map((e) => UsersPostDataBusinessModel(
+            title: e.title,
+            author: e.author,
+            body: e.body,
+            postID: e.postID
+        )))
+    );
+  }
+
 }
 
 
