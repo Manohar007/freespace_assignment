@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 
 import 'package:amplify_flutter_clean_framework/ui/presenter.dart';
+import 'package:freespace_assignment/addUserPost/ui/add_user_post_feature.dart';
 import 'package:freespace_assignment/getUsers/model/get_user_view_model.dart';
 import 'package:freespace_assignment/getUsersPosts/bloc/get_users_post_bloc.dart';
 
@@ -12,7 +13,12 @@ class GetUsersPostPresenter extends Presenter<GetUsersPostBloc,UsersDataViewMode
   @override
   Widget buildScreen(BuildContext context, GetUsersPostBloc bloc, UsersDataViewModel viewModel) {
     return GetUsersPostScreen(getUserPostViewModel: viewModel,onTapUserPost: (index){},
-    onTapAddPost: (){},);
+    onTapAddPost: (){
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => AddUserPostFeature(
+            userId: viewModel.userID,
+          )));
+    },);
   }
 
   @override
